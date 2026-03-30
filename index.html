@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Web App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Chemistry Project</h1>
+        <nav>
+            <button class="tab-btn active" data-target="periodic-table">Periodic Table</button>
+            <button class="tab-btn" data-target="reaction-predictor">Reaction Predictor</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="periodic-table" class="tab-content active">
+            <h2>Interactive Periodic Table</h2>
+            <div class="pt-container">
+                <div class="pt-grid" id="pt-grid">
+                    <!-- Elements injected via JS -->
+                </div>
+                <div class="pt-details" id="pt-details">
+                    <h3 id="detail-name">Select an element</h3>
+                    <p><strong>Symbol:</strong> <span id="detail-symbol">-</span></p>
+                    <p><strong>Atomic No:</strong> <span id="detail-number">-</span></p>
+                    <p><strong>Atomic Mass:</strong> <span id="detail-mass">-</span></p>
+                    <p><strong>Uses:</strong> <span id="detail-uses">-</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reaction-predictor" class="tab-content">
+            <h2>Reaction Predictor</h2>
+            <div class="rp-container">
+                <p class="rp-instructions">Enter reactants (e.g., HCl + NaOH) to predict the products and see the balanced equation.</p>
+                <div class="rp-input-group">
+                    <input type="text" id="rp-input" placeholder="e.g. HCl + NaOH" autocomplete="off">
+                    <button class="rp-btn" id="rp-btn">Predict & Balance</button>
+                </div>
+                
+                <div id="rp-output" class="rp-output">
+                    <!-- Results injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

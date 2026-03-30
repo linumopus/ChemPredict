@@ -1,0 +1,12 @@
+{
+  "name": "chemistry-webapp",
+  "version": "1.0.0",
+  "description": "Interactive Periodic Table and Reaction Predictor",
+  "main": "api/elements.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  }
+}
