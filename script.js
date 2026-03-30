@@ -78,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if ([9,17,35].includes(z)) elBox.style.backgroundColor = '#166534'; // Halogens (Dark Green)
                 else if ([2,10,18,36].includes(z)) elBox.style.backgroundColor = '#0f766e'; // Noble Gases (Teal)
 
+                // Add an elegant staggered pop-in animation based on atomic number
+                elBox.style.animation = `popInElement 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${Math.min(z * 0.04, 1.5)}s`;
+
                 elBox.innerHTML = `
                     <div class="element-number" style="color: #cbd5e1;">${eNum}</div>
                     <div class="element-symbol" style="color: ${[9,17,35].includes(z) ? '#ef4444' : '#f8fafc'};">${element.symbol}</div>
@@ -122,9 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // UI Loading State configuration
             const originalBtnText = rpBtn.textContent;
-            rpBtn.textContent = 'Predicting...';
+            rpBtn.innerHTML = '<span class="rp-spark-pulse" style="display: inline-block; animation: glowPulse 1s infinite alternate; margin-right: 5px;">✨</span> Predicting...';
+            rpBtn.classList.add('rp-spark-pulse');
             rpBtn.disabled = true;
-            rpBtn.style.opacity = '0.7';
+            rpBtn.style.opacity = '0.9';
             
             // Start fading out the old output box
             rpOutput.classList.remove('visible');
@@ -146,11 +150,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (response.ok && data.product) {
                         rpOutput.classList.remove('error');
                         rpOutput.innerHTML = `
-                            <h3>Reaction Found!</h3>
-                            <p><strong>Type:</strong> ${data.type}</p>
-                            <p><strong>Predicted Products:</strong> ${data.product}</p>
-                            <p><strong>Balanced Equation:</strong> <br> <span class="equation">${data.balanced}</span></p>
+                            <h3 id="typing-header" class="typing-cursor"></h3>
+                            <div class="stagger-fade-in" style="animation-delay: 1.2s">
+                                <p><strong>Type:</strong> ${data.type}</p>
+                                <p><strong>Predicted Products:</strong> ${data.product}</p>
+                                <p><strong>Balanced Equation:</strong> <br> <span class="equation">${data.balanced}</span></p>
+                            </div>
                         `;
+                        
+                        // Typewriter Orchestration Logic
+                        const heading = document.getElementById('typing-header');
+                        const textToType = "Reaction Found! ✨";
+                        let charIndex = 0;
+                        const typingInterval = setInterval(() => {
+                            if (charIndex < textToType.length) {
+                                heading.textContent += textToType.charAt(charIndex);
+                                charIndex++;
+                            } else {
+                                clearInterval(typingInterval);
+                                heading.classList.remove('typing-cursor'); // stop blinking when done
+                            }
+                        }, 50);
                     } else {
                         rpOutput.classList.add('error');
                         rpOutput.innerHTML = `
@@ -177,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 // Retract loading behaviors
                 rpBtn.textContent = originalBtnText;
+                rpBtn.classList.remove('rp-spark-pulse');
                 rpBtn.disabled = false;
                 rpBtn.style.opacity = '1';
             }

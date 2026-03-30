@@ -41,6 +41,17 @@ h1 {
     margin-bottom: 1.5rem;
     font-size: 2.2rem;
     letter-spacing: -0.5px;
+    background: linear-gradient(270deg, var(--primary-color), #818cf8, #a78bfa, var(--primary-color));
+    background-size: 300% auto;
+    background-clip: text; /* standard */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSpark 4s linear infinite;
+}
+
+@keyframes shimmerSpark {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 nav {
@@ -106,8 +117,13 @@ main {
 h2 {
     font-weight: 600;
     margin-bottom: 1.2rem;
-    color: #f1f5f9; /* Dark mode bright text */
     font-size: 1.6rem;
+    background: linear-gradient(270deg, #f1f5f9, #94a3b8, #cbd5e1, #f1f5f9);
+    background-size: 300% auto;
+    background-clip: text; /* standard */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSpark 5s linear infinite;
 }
 
 p {
@@ -139,7 +155,14 @@ p {
     gap: 6px;
 }
 
+@keyframes popInElement {
+    0% { opacity: 0; transform: scale(0.6) translateY(15px); }
+    70% { opacity: 1; transform: scale(1.08) translateY(-2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .element-box {
+    opacity: 0; /* Default invisible before load animation */
     background-color: var(--element-bg);
     border: 1px solid transparent;
     border-radius: 4px;
@@ -339,6 +362,31 @@ p {
 .rp-output.error h3 {
     color: #ef4444;
     border-bottom-color: #7f1d1d; /* Dark theme error line */
+    -webkit-text-fill-color: #ef4444; /* Override gradient for errors */
+}
+
+/* --- Typing UI and Spark Animations --- */
+.typing-cursor::after {
+    content: '|';
+    animation: blinkTypewriter 0.8s infinite step-end;
+}
+
+@keyframes blinkTypewriter {
+    50% { opacity: 0; }
+}
+
+.rp-spark-pulse {
+    animation: glowPulse 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px var(--primary-color); transform: scale(1); }
+    100% { box-shadow: 0 0 20px var(--primary-hover); transform: scale(1.04); }
+}
+
+.stagger-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
 }
 
 /* --- Mobile Responsiveness --- */
