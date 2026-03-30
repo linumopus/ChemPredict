@@ -46,7 +46,8 @@ h1 {
     z-index: 1;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
+    /* Darker Gradient: Blue -> Purple -> Violet -> Purple -> Blue */
+    background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6, #7c3aed, #8b5cf6, #6366f1, #3b82f6);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -522,7 +523,7 @@ p {
     letter-spacing: 2px; /* Matches h1 exactly */
     display: flex;
     align-items: baseline;
-    color: #a78bfa;
+    color: #3b82f6; /* Start color (Blue) to match h1-gradient overlap */
     pointer-events: none;
     will-change: transform, opacity;
 }
@@ -543,7 +544,7 @@ p {
     left: 50%;
     width: 0.18em;
     height: 0.18em;
-    background-color: #a78bfa;
+    background-color: #3b82f6;
     border-radius: 50%;
     transform: translateX(-50%) translateY(-200px) scale(0); /* Hidden way above */
     opacity: 0;
