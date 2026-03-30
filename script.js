@@ -21,51 +21,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Typing Effect: Letters appear one by one
         for (let i = 0; i < introLetters.length; i++) {
-            await delay(120);
+            await delay(120); // Typing pace
             introLetters[i].classList.add('anim-type-in');
         }
 
-        // 3. Special "i" dot bounce (falling from way above)
+        // 3. Special "i" dot bounce
         await delay(400);
         iDot.classList.add('anim-pop-dot');
 
-        // 4. Tighten/Close box
-        await delay(800);
+        // 4. Tighten/Close box slightly
+        await delay(600);
         introBoxContainer.classList.add('anim-tighten');
 
-        // 5. Calculate perfect overlap coordinates
-        await delay(600);
-        
-        // Get positions
-        const introRect = introBoxContainer.getBoundingClientRect();
-        const mainTitleRect = mainTitle.getBoundingClientRect();
-
-        // Calculate deltas
-        const deltaX = mainTitleRect.left + (mainTitleRect.width / 2) - (introRect.left + (introRect.width / 2));
-        const deltaY = mainTitleRect.top + (mainTitleRect.height / 2) - (introRect.top + (introRect.height / 2));
-
-        // Set CSS variables for the keyframe
-        introBoxContainer.style.setProperty('--dest-x', `${deltaX}px`);
-        introBoxContainer.style.setProperty('--dest-y', `${deltaY}px`);
-
-        // 6. Execute perfect transition
+        // 5. Transition to Main UI: Move and Shrink together
+        await delay(700);
         introBoxContainer.classList.add('anim-final-move');
         
-        // 7. Impact Finish: Exactly when overlap happens
-        await delay(900); // Duration of anim-final-move
+        // 6. Impact Finish: Trigger shake and pulse as it hits final position
+        await delay(450); 
         mainContent.classList.add('visible');
         mainTitle.classList.add('anim-impact-pulse');
         document.body.classList.add('shake-it');
         introBox.classList.add('anim-burst');
 
-        // Start the slow rainbow gradient shimmer after the intro impact
-        await delay(500);
-        mainTitle.classList.add('has-gradient');
-
-        // 8. Cleanup
-        await delay(600);
-        introOverlay.style.opacity = '0';
-        await delay(400);
+        // 7. Cleanup: Reveal full site and enable scrolling
+        await delay(1000);
         introOverlay.style.display = 'none';
         document.body.style.overflow = '';
         document.body.classList.remove('shake-it');

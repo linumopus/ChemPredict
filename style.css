@@ -42,12 +42,17 @@ h1 {
     margin-bottom: 1.5rem;
     font-size: 3.8rem;
     letter-spacing: 2px;
-    color: #a78bfa; /* Lavender/Purple fill */
+    /* Animated gradient fill — blue through violet and purple */
+    background: linear-gradient(270deg, #3b82f6, #6366f1, #8b5cf6, #7c3aed, #a78bfa, #c084fc, #a78bfa, #7c3aed, #8b5cf6, #6366f1, #3b82f6);
+    background-size: 400% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSpark 9s linear infinite;
     display: inline-block;
-    z-index: 1;
 }
 
-/* Layer 1 (deepest): Thick blue animated cartoon outline */
+/* Layer 1 (deepest): Thick blue-to-violet animated cartoon outline */
 h1::before {
     content: attr(data-text);
     position: absolute;
@@ -55,6 +60,8 @@ h1::before {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 18px #3b82f6;
     paint-order: stroke fill;
     z-index: -2;
@@ -70,32 +77,25 @@ h1::after {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 8px #1a1a24;
     paint-order: stroke fill;
     z-index: -1;
     white-space: nowrap;
 }
 
-@keyframes logoShimmer {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
-
-h1.has-gradient {
-    /* Violet -> Purple -> Blue -> Violet repeating */
-    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: logoShimmer 7s linear infinite;
-}
-
 @keyframes outlineColorShift {
     0%   { -webkit-text-stroke-color: #3b82f6; }
-    33%  { -webkit-text-stroke-color: #6366f1; }
-    66%  { -webkit-text-stroke-color: #8b5cf6; }
+    25%  { -webkit-text-stroke-color: #6366f1; }
+    50%  { -webkit-text-stroke-color: #7c3aed; }
+    75%  { -webkit-text-stroke-color: #6366f1; }
     100% { -webkit-text-stroke-color: #3b82f6; }
+}
+
+@keyframes shimmerSpark {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 nav {
@@ -170,7 +170,7 @@ h2 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: logoShimmer 9s linear infinite;
+    animation: shimmerSpark 7s linear infinite;
     letter-spacing: 0.5px;
 }
 
@@ -222,11 +222,9 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1 / 1.15;
-    position: relative; /* Fixed: allows absolute positioning for child elements like numbers */
-    color: #f1f5f9;
-    overflow: hidden;
-    padding: 4px;
+    aspect-ratio: 1 / 1.15; /* Soft rectangle matching poster blocks */
+    color: #f1f5f9; /* White text explicitly required over dark block backgrounds */
+    overflow: hidden; /* Keep words from blowing up borders */
 }
 
 .element-box:hover, .element-box.selected {
@@ -238,13 +236,11 @@ p {
 }
 
 .element-number {
-    position: absolute; /* Fixed: sits cleanly in the corner without affecting center symbol */
-    top: 5px;
-    left: 6px;
-    font-size: 0.75rem;
-    font-weight: 800;
-    opacity: 1;
-    line-height: 1;
+    font-size: clamp(0.5rem, 0.8vw, 0.8rem);
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 2px;
+    opacity: 0.8;
 }
 
 .element-symbol {
@@ -485,7 +481,6 @@ p {
     align-items: center;
     overflow: hidden;
     will-change: transform, opacity;
-    transition: opacity 0.5s ease;
 }
 
 .intro-box-container {
@@ -520,13 +515,12 @@ p {
 
 .intro-text {
     font-family: 'Lilita One', cursive;
-    font-size: 3.8rem; /* Matches h1 exactly */
-    letter-spacing: 2px; /* Matches h1 exactly */
+    font-size: 6rem;
+    letter-spacing: 4px;
     display: flex;
     align-items: baseline;
     color: #a78bfa;
     pointer-events: none;
-    will-change: transform, opacity;
 }
 
 .intro-letter {
@@ -541,16 +535,15 @@ p {
 
 .i-dot {
     position: absolute;
-    top: -0.15em; /* Target position */
+    top: -0.15em;
     left: 50%;
     width: 0.18em;
     height: 0.18em;
     background-color: #a78bfa;
     border-radius: 50%;
-    transform: translateX(-50%) translateY(-200px) scale(0); /* Start WAY above header */
+    transform: translateX(-50%) scale(0);
     opacity: 0;
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-    z-index: 5;
+    box-shadow: 0 0 10px #7c3aed;
 }
 
 /* Keyframes */
@@ -565,11 +558,9 @@ p {
 }
 
 @keyframes popDot {
-    0% { opacity: 0; transform: translateX(-50%) translateY(-200px) scale(0); }
-    30% { opacity: 1; transform: translateX(-50%) translateY(-200px) scale(1); }
-    80% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    90% { opacity: 1; transform: translateX(-50%) translateY(-5px) scale(1); }
-    100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    0% { opacity: 0; transform: translateX(-50%) scale(0); }
+    60% { opacity: 1; transform: translateX(-50%) scale(1.4); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
 @keyframes tightenBoxContainer {
@@ -577,8 +568,8 @@ p {
 }
 
 @keyframes introToFinalPos {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--dest-x), var(--dest-y)) scale(1); opacity: 1; }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-42vh) scale(0.5); opacity: 0; visibility: hidden; }
 }
 
 @keyframes burstEffect {
