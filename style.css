@@ -36,43 +36,61 @@ header {
 }
 
 h1 {
+    position: relative;
     font-family: 'Lilita One', cursive;
     font-weight: 400;
     margin-bottom: 1.5rem;
     font-size: 3.8rem;
     letter-spacing: 2px;
-    background: linear-gradient(270deg,
-        #3b82f6,
-        #6366f1,
-        #8b5cf6,
-        #7c3aed,
-        #a78bfa,
-        #c084fc,
-        #8b5cf6,
-        #6366f1,
-        #3b82f6
-    );
+    /* Animated gradient fill — blue through violet and purple */
+    background: linear-gradient(270deg, #3b82f6, #6366f1, #8b5cf6, #7c3aed, #a78bfa, #c084fc, #a78bfa, #7c3aed, #8b5cf6, #6366f1, #3b82f6);
     background-size: 400% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 8s linear infinite;
+    animation: shimmerSpark 9s linear infinite;
+    display: inline-block;
+}
 
-    /*
-     * Outline-with-gap technique:
-     * Layer 1-3: Background-colored inner shadows "mask" the immediate
-     *            zone around each letter, creating a visual gap.
-     * Layer 4-7: Purple/violet colored shadows bloom beyond that gap,
-     *            tracing the per-letter outline shape.
-     */
-    text-shadow:
-        0 0 3px #1a1a24,
-        0 0 5px #1a1a24,
-        0 0 7px #1a1a24,
-        0 0 11px rgba(139, 92, 246, 0.95),
-        0 0 16px rgba(124, 58, 237, 0.85),
-        0 0 24px rgba(109, 40, 217, 0.65),
-        0 0 34px rgba(91, 33, 182, 0.4);
+/* Layer 1 (deepest): Thick blue-to-violet animated cartoon outline */
+h1::before {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 18px #3b82f6;
+    paint-order: stroke fill;
+    z-index: -2;
+    white-space: nowrap;
+    animation: outlineColorShift 9s linear infinite;
+}
+
+/* Layer 2 (middle): Dark gap stroke between fill and blue outline */
+h1::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 8px #1a1a24;
+    paint-order: stroke fill;
+    z-index: -1;
+    white-space: nowrap;
+}
+
+@keyframes outlineColorShift {
+    0%   { -webkit-text-stroke-color: #3b82f6; }
+    25%  { -webkit-text-stroke-color: #6366f1; }
+    50%  { -webkit-text-stroke-color: #7c3aed; }
+    75%  { -webkit-text-stroke-color: #6366f1; }
+    100% { -webkit-text-stroke-color: #3b82f6; }
 }
 
 @keyframes shimmerSpark {
@@ -147,12 +165,12 @@ h2 {
     font-weight: 700;
     margin-bottom: 1.2rem;
     font-size: 2rem;
-    background: linear-gradient(270deg, #f8fafc, #93c5fd, #c7d2fe, #bfdbfe, #f8fafc);
-    background-size: 300% auto;
+    background: linear-gradient(270deg, #f8fafc, #c7d2fe, #a78bfa, #8b5cf6, #c7d2fe, #f8fafc);
+    background-size: 400% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 4s linear infinite;
+    animation: shimmerSpark 7s linear infinite;
     letter-spacing: 0.5px;
 }
 
