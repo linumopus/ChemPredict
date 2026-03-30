@@ -168,12 +168,12 @@ h2 {
     font-weight: 700;
     margin-bottom: 1.2rem;
     font-size: 2rem;
-    background: linear-gradient(270deg, #f8fafc, #c7d2fe, #a78bfa, #8b5cf6, #c7d2fe, #f8fafc);
-    background-size: 400% auto;
+    background: linear-gradient(90deg, #3b82f6, #a78bfa, #8b5cf6, #a78bfa, #3b82f6);
+    background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 7s linear infinite;
+    animation: shimmerSpark 15s linear infinite;
     letter-spacing: 0.5px;
 }
 
