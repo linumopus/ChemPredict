@@ -466,3 +466,141 @@ p {
         font-size: 1.1rem;
     }
 }
+
+/* --- Intro Animation Overlay Styles --- */
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    will-change: transform, opacity;
+}
+
+.intro-box-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    will-change: transform;
+}
+
+.intro-box-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.intro-box-rect {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 4;
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    filter: drop-shadow(0 0 12px var(--primary-color));
+    rx: 20;
+    ry: 20;
+}
+
+.intro-text {
+    font-family: 'Lilita One', cursive;
+    font-size: 6rem;
+    letter-spacing: 4px;
+    display: flex;
+    align-items: baseline;
+    color: #a78bfa;
+    pointer-events: none;
+}
+
+.intro-letter {
+    opacity: 0;
+    transform: translateY(30px) scale(0.7);
+    display: inline-block;
+}
+
+.i-container {
+    position: relative;
+}
+
+.i-dot {
+    position: absolute;
+    top: -0.15em;
+    left: 50%;
+    width: 0.18em;
+    height: 0.18em;
+    background-color: #a78bfa;
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    box-shadow: 0 0 10px #7c3aed;
+}
+
+/* Keyframes */
+@keyframes typeInLetter {
+    0% { opacity: 0; transform: translateY(30px) scale(0.7); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes drawBoxOutline {
+    0% { stroke-dashoffset: 1400; opacity: 0.5; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes popDot {
+    0% { opacity: 0; transform: translateX(-50%) scale(0); }
+    60% { opacity: 1; transform: translateX(-50%) scale(1.4); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes tightenBoxContainer {
+    to { transform: scale(0.92); }
+}
+
+@keyframes introToFinalPos {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-42vh) scale(0.5); opacity: 0; visibility: hidden; }
+}
+
+@keyframes burstEffect {
+    0% { transform: scale(0.92); opacity: 1; stroke-width: 4; }
+    100% { transform: scale(1.6); opacity: 0; stroke-width: 0; }
+}
+
+@keyframes mainTitleImpact {
+    0% { transform: scale(1); filter: brightness(1); }
+    30% { transform: scale(1.15); filter: brightness(2) drop-shadow(0 0 30px var(--primary-color)); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes screenShakeAction {
+    0%, 100% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-4px, -2px); }
+    20%, 40%, 60%, 80% { transform: translate(4px, 2px); }
+}
+
+/* Utility Classes */
+.anim-type-in { animation: typeInLetter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.anim-draw-box { animation: drawBoxOutline 2.5s ease-in-out forwards; }
+.anim-pop-dot { animation: popDot 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.anim-tighten { animation: tightenBoxContainer 0.4s ease-out forwards; }
+.anim-final-move { animation: introToFinalPos 0.9s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+.anim-burst { animation: burstEffect 0.7s ease-out forwards; }
+.anim-impact-pulse { animation: mainTitleImpact 0.5s ease-out forwards; }
+.shake-it { animation: screenShakeAction 0.4s ease-in-out; }
+
+#main-content.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.5s ease;
+}

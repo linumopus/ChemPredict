@@ -9,14 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Playfair+Display:ital,wght@0,700;1,700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <h1 data-text="ChemPredict">ChemPredict</h1>
-        <nav>
-            <button class="tab-btn active" data-target="periodic-table">Periodic Table</button>
-            <button class="tab-btn" data-target="reaction-predictor">Reaction Predictor</button>
-        </nav>
-    </header>
+    <!-- Intro Animation Overlay -->
+    <div id="intro-overlay">
+        <div class="intro-box-container">
+            <svg class="intro-box-svg" viewBox="0 0 520 120">
+                <rect class="intro-box-rect" x="10" y="10" width="500" height="100" rx="15" ry="15" />
+            </svg>
+            <div class="intro-text" id="intro-text">
+                <span class="intro-letter">C</span><span class="intro-letter">h</span><span class="intro-letter">e</span><span class="intro-letter">m</span><span class="intro-letter">P</span><span class="intro-letter">r</span><span class="intro-letter">e</span><span class="intro-letter">d</span><span class="intro-letter i-container">ı<span class="i-dot"></span></span><span class="intro-letter">c</span><span class="intro-letter">t</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (starts slightly hidden/transformed) -->
+    <div id="main-content" style="opacity: 0; visibility: hidden;">
+        <header>
+            <h1 data-text="ChemPredict" id="main-title">ChemPredict</h1>
+            <nav>
+                <button class="tab-btn active" data-target="periodic-table">Periodic Table</button>
+                <button class="tab-btn" data-target="reaction-predictor">Reaction Predictor</button>
+            </nav>
+        </header>
 
     <main>
         <section id="periodic-table" class="tab-content active">
@@ -51,6 +64,7 @@
         </section>
     </main>
 
+    </div> <!-- Close #main-content -->
     <script src="script.js"></script>
 </body>
 </html>

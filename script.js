@@ -1,4 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---- INTRO ANIMATION ORCHESTRATION ----
+    const introOverlay = document.getElementById('intro-overlay');
+    const introBox = document.querySelector('.intro-box-rect');
+    const introLetters = document.querySelectorAll('.intro-letter');
+    const iDot = document.querySelector('.i-dot');
+    const introBoxContainer = document.querySelector('.intro-box-container');
+    const mainContent = document.getElementById('main-content');
+    const mainTitle = document.getElementById('main-title');
+
+    async function playIntro() {
+        if (!introOverlay) return;
+        
+        const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+        // Disable scrolling during intro
+        document.body.style.overflow = 'hidden';
+
+        // 1. Initial State: Start drawing the box
+        introBox.classList.add('anim-draw-box');
+
+        // 2. Typing Effect: Letters appear one by one
+        for (let i = 0; i < introLetters.length; i++) {
+            await delay(120); // Typing pace
+            introLetters[i].classList.add('anim-type-in');
+        }
+
+        // 3. Special "i" dot bounce
+        await delay(400);
+        iDot.classList.add('anim-pop-dot');
+
+        // 4. Tighten/Close box slightly
+        await delay(600);
+        introBoxContainer.classList.add('anim-tighten');
+
+        // 5. Transition to Main UI: Move and Shrink together
+        await delay(700);
+        introBoxContainer.classList.add('anim-final-move');
+        
+        // 6. Impact Finish: Trigger shake and pulse as it hits final position
+        await delay(450); 
+        mainContent.classList.add('visible');
+        mainTitle.classList.add('anim-impact-pulse');
+        document.body.classList.add('shake-it');
+        introBox.classList.add('anim-burst');
+
+        // 7. Cleanup: Reveal full site and enable scrolling
+        await delay(1000);
+        introOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        document.body.classList.remove('shake-it');
+    }
+
+    playIntro();
     // ---- TAB SWITCHING LOGIC ----
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
