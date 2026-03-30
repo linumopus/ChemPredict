@@ -132,15 +132,15 @@ p {
 .pt-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(18, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(18, minmax(0, 1fr)); /* STRICTLY forces grid into bounds */
+    gap: 6px;
 }
 
 .element-box {
     background-color: var(--element-bg);
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     border-radius: 4px;
-    padding: 12px 10px;
+    padding: 2px; /* Remove thick paddings preventing fit */
     cursor: pointer;
     text-align: center;
     transition: all 0.3s ease;
@@ -148,8 +148,9 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1; /* Forces a perfect square! */
+    aspect-ratio: 1 / 1.15; /* Soft rectangle matching poster blocks */
     color: #1e293b;
+    overflow: hidden; /* Keep words from blowing up borders */
 }
 
 .element-box:hover, .element-box.selected {
@@ -161,7 +162,7 @@ p {
 }
 
 .element-number {
-    font-size: 0.75rem;
+    font-size: clamp(0.5rem, 0.8vw, 0.8rem);
     font-weight: 600;
     align-self: flex-start;
     margin-bottom: 2px;
@@ -169,7 +170,7 @@ p {
 }
 
 .element-symbol {
-    font-size: 1.15rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.25rem);
     font-weight: 600;
 }
 
