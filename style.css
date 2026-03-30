@@ -198,12 +198,12 @@ p {
 
 .pt-grid {
     width: 100%;
-    min-width: 700px; /* Prevents unreadable squashing on mobile screens */
+    min-width: 850px; /* Forces tiles to be larger minimum size */
     overflow-x: auto; /* Enables smooth horizontal swipe on phones */
     padding: 4px 4px 12px 4px; /* Internal buffer stops scaling elements from overflowing */
     display: grid;
     grid-template-columns: repeat(18, minmax(0, 1fr)); /* STRICTLY forces grid into bounds */
-    gap: 6px;
+    gap: 8px; /* Slightly more breathing room between bigger tiles */
 }
 
 @keyframes popInElement {
@@ -225,7 +225,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1 / 1.15; /* Soft rectangle matching poster blocks */
+    aspect-ratio: 1 / 1.35; /* Taller rectangular tiles to give numbers space */
     color: #f1f5f9; /* White text explicitly required over dark block backgrounds */
     overflow: hidden; /* Keep words from blowing up borders */
     position: relative; /* Allow absolute positioning of atomic number */
@@ -241,16 +241,17 @@ p {
 
 .element-number {
     position: absolute;
-    top: 4px;
+    top: 2px;
     left: 4px;
-    font-size: clamp(0.6rem, 1vw, 1rem);
+    font-size: clamp(0.5rem, 0.9vw, 0.85rem);
     font-weight: 600;
     opacity: 0.8;
 }
 
 .element-symbol {
-    font-size: clamp(1.1rem, 2vw, 2rem);
+    font-size: clamp(0.9rem, 1.6vw, 1.7rem);
     font-weight: 600;
+    margin-top: 4px; /* Push symbol slightly down from the visual center to distance it from the top-left number */
 }
 
 /* Detail Panel */
