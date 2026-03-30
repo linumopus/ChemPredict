@@ -133,7 +133,7 @@ p {
     width: 100%;
     min-width: 700px; /* Prevents unreadable squashing on mobile screens */
     overflow-x: auto; /* Enables smooth horizontal swipe on phones */
-    padding-bottom: 8px; /* Room for scrollbar */
+    padding: 4px 4px 12px 4px; /* Internal buffer stops scaling elements from overflowing */
     display: grid;
     grid-template-columns: repeat(18, minmax(0, 1fr)); /* STRICTLY forces grid into bounds */
     gap: 6px;
