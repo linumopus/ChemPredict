@@ -1,5 +1,5 @@
 {
-  "name": "chemistry-webapp",
+  "name": "chempredict",
   "version": "1.0.0",
   "description": "Interactive Periodic Table and Reaction Predictor",
   "main": "api/elements.js",

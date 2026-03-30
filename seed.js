@@ -21,23 +21,44 @@ if (!uri) {
     process.exit(1);
 }
 
-// 1. Elements Data (15 objects)
+// 1. Elements Data (36 objects, merged with previous detailed descriptions)
 const elementsToInsert = [
     { symbol: 'H', name: 'Hydrogen', atomicNumber: 1, atomicMass: 1.008, uses: 'Rocket fuel, filling balloons, petroleum refining.' },
     { symbol: 'He', name: 'Helium', atomicNumber: 2, atomicMass: 4.0026, uses: 'Balloons, cooling superconducting magnets, deep-sea diving.' },
+    { symbol: 'Li', name: 'Lithium', atomicNumber: 3, atomicMass: 6.94, uses: 'Batteries' },
+    { symbol: 'Be', name: 'Beryllium', atomicNumber: 4, atomicMass: 9.01, uses: 'Alloys' },
+    { symbol: 'B', name: 'Boron', atomicNumber: 5, atomicMass: 10.81, uses: 'Glass, detergents' },
     { symbol: 'C', name: 'Carbon', atomicNumber: 6, atomicMass: 12.011, uses: 'Steel manufacturing, plastics, filtration, basis of organic life.' },
     { symbol: 'N', name: 'Nitrogen', atomicNumber: 7, atomicMass: 14.007, uses: 'Fertilizers, nylon, dyes, explosives.' },
     { symbol: 'O', name: 'Oxygen', atomicNumber: 8, atomicMass: 15.999, uses: 'Respiration, steel production, water purification, oxidizer.' },
+    { symbol: 'F', name: 'Fluorine', atomicNumber: 9, atomicMass: 19.00, uses: 'Toothpaste, chemicals' },
+    { symbol: 'Ne', name: 'Neon', atomicNumber: 10, atomicMass: 20.18, uses: 'Lighting' },
     { symbol: 'Na', name: 'Sodium', atomicNumber: 11, atomicMass: 22.990, uses: 'Table salt, streetlights, heat exchanger.' },
     { symbol: 'Mg', name: 'Magnesium', atomicNumber: 12, atomicMass: 24.305, uses: 'Lightweight alloys, flares, fireworks, antacids.' },
     { symbol: 'Al', name: 'Aluminum', atomicNumber: 13, atomicMass: 26.982, uses: 'Cans, foil, kitchen utensils, window frames.' },
     { symbol: 'Si', name: 'Silicon', atomicNumber: 14, atomicMass: 28.085, uses: 'Semiconductors, computers, microelectronics, glass.' },
     { symbol: 'P', name: 'Phosphorus', atomicNumber: 15, atomicMass: 30.974, uses: 'Fertilizers, matches, steel production.' },
+    { symbol: 'S', name: 'Sulfur', atomicNumber: 16, atomicMass: 32.07, uses: 'Acids, rubber' },
     { symbol: 'Cl', name: 'Chlorine', atomicNumber: 17, atomicMass: 35.45, uses: 'Water purification, disinfectants, bleach, PVC plastics.' },
+    { symbol: 'Ar', name: 'Argon', atomicNumber: 18, atomicMass: 39.95, uses: 'Inert gas, welding' },
     { symbol: 'K', name: 'Potassium', atomicNumber: 19, atomicMass: 39.098, uses: 'Fertilizers, soaps, glass making, nerve functions.' },
     { symbol: 'Ca', name: 'Calcium', atomicNumber: 20, atomicMass: 40.078, uses: 'Cement, dietary supplements, plaster, bones.' },
+    { symbol: 'Sc', name: 'Scandium', atomicNumber: 21, atomicMass: 44.96, uses: 'Alloys' },
+    { symbol: 'Ti', name: 'Titanium', atomicNumber: 22, atomicMass: 47.87, uses: 'Aircraft, implants' },
+    { symbol: 'V', name: 'Vanadium', atomicNumber: 23, atomicMass: 50.94, uses: 'Steel alloys' },
+    { symbol: 'Cr', name: 'Chromium', atomicNumber: 24, atomicMass: 52.00, uses: 'Stainless steel' },
+    { symbol: 'Mn', name: 'Manganese', atomicNumber: 25, atomicMass: 54.94, uses: 'Steel production' },
     { symbol: 'Fe', name: 'Iron', atomicNumber: 26, atomicMass: 55.845, uses: 'Steel construction, bridges, vehicles, blood hemoglobin.' },
-    { symbol: 'Cu', name: 'Copper', atomicNumber: 29, atomicMass: 63.546, uses: 'Electrical wiring, plumbing, coins, bronze alloys.' }
+    { symbol: 'Co', name: 'Cobalt', atomicNumber: 27, atomicMass: 58.93, uses: 'Batteries, magnets' },
+    { symbol: 'Ni', name: 'Nickel', atomicNumber: 28, atomicMass: 58.69, uses: 'Coins, alloys' },
+    { symbol: 'Cu', name: 'Copper', atomicNumber: 29, atomicMass: 63.546, uses: 'Electrical wiring, plumbing, coins, bronze alloys.' },
+    { symbol: 'Zn', name: 'Zinc', atomicNumber: 30, atomicMass: 65.39, uses: 'Galvanization' },
+    { symbol: 'Ga', name: 'Gallium', atomicNumber: 31, atomicMass: 69.72, uses: 'Semiconductors' },
+    { symbol: 'Ge', name: 'Germanium', atomicNumber: 32, atomicMass: 72.61, uses: 'Electronics' },
+    { symbol: 'As', name: 'Arsenic', atomicNumber: 33, atomicMass: 74.92, uses: 'Alloys, pesticides' },
+    { symbol: 'Se', name: 'Selenium', atomicNumber: 34, atomicMass: 78.96, uses: 'Glass, electronics' },
+    { symbol: 'Br', name: 'Bromine', atomicNumber: 35, atomicMass: 79.90, uses: 'Flame retardants' },
+    { symbol: 'Kr', name: 'Krypton', atomicNumber: 36, atomicMass: 83.80, uses: 'Lighting' }
 ];
 
 // 2. Reactions Data (Over 40 diverse reactions restricted to the 15 elements above)
@@ -95,7 +116,20 @@ const reactionsToInsert = [
     
     // Decompositions
     { input: "CaCO3", product: "CaO + CO₂", balanced: "CaCO₃ → CaO + CO₂", type: "Decomposition (Thermal)" },
-    { input: "KClO3", product: "KCl + O₂", balanced: "2KClO₃ → 2KCl + 3O₂", type: "Decomposition" }
+    { input: "KClO3", product: "KCl + O₂", balanced: "2KClO₃ → 2KCl + 3O₂", type: "Decomposition" },
+
+    // Additional Reactions for Missed & Transition Elements
+    { input: "Zn + HCl", product: "ZnCl₂ + H₂", balanced: "Zn + 2HCl → ZnCl₂ + H₂", type: "Single Displacement" },
+    { input: "Li + H2O", product: "LiOH + H₂", balanced: "2Li + 2H₂O → 2LiOH + H₂", type: "Single Displacement" },
+    { input: "H2 + F2", product: "HF", balanced: "H₂ + F₂ → 2HF", type: "Combination (Synthesis)" },
+    { input: "S + O2", product: "SO₂", balanced: "S + O₂ → SO₂", type: "Combination (Combustion)" },
+    { input: "Zn + S", product: "ZnS", balanced: "Zn + S → ZnS", type: "Combination (Synthesis)" },
+    { input: "Fe + S", product: "FeS", balanced: "Fe + S → FeS", type: "Combination (Synthesis)" },
+    { input: "TiCl4 + Mg", product: "Ti + MgCl₂", balanced: "TiCl₄ + 2Mg → Ti + 2MgCl₂", type: "Single Displacement (Kroll Process)" },
+    { input: "MnO2 + HCl", product: "MnCl₂ + H₂O + Cl₂", balanced: "MnO₂ + 4HCl → MnCl₂ + 2H₂O + Cl₂", type: "Redox" },
+    { input: "K + Br2", product: "KBr", balanced: "2K + Br₂ → 2KBr", type: "Combination (Synthesis)" },
+    { input: "Ni + O2", product: "NiO", balanced: "2Ni + O₂ → 2NiO", type: "Combination (Oxidation)" },
+    { input: "Cr2O3 + Al", product: "Cr + Al₂O₃", balanced: "Cr₂O₃ + 2Al → 2Cr + Al₂O₃", type: "Single Displacement (Thermite)" }
 ];
 
 async function seedDatabase() {
@@ -106,23 +140,19 @@ async function seedDatabase() {
         console.log("⏳ Connecting to MongoDB Atlas cluster...");
         await client.connect();
         
-        const db = client.db('chem_project'); 
+        const db = client.db('ChemPredict'); 
         
-        // --- SEED COLLECTION 1: ELEMENTS ---
-        const elementsCollection = db.collection('elements');
-        console.log(`\n🧹 Clearing existing 'elements' data...`);
-        await elementsCollection.deleteMany({});
-        console.log(`🌱 Seeding ${elementsToInsert.length} elements...`);
-        const elementsResult = await elementsCollection.insertMany(elementsToInsert);
-        console.log(`✅ Success! Inserted ${elementsResult.insertedCount} elements.`);
+        console.log(`\n🧹 Clearing old data...`);
+        // Clear old data
+        await db.collection("elements").deleteMany({});
+        await db.collection("reactions").deleteMany({});
 
-        // --- SEED COLLECTION 2: REACTIONS ---
-        const reactionsCollection = db.collection('reactions');
-        console.log(`\n🧹 Clearing existing 'reactions' data...`);
-        await reactionsCollection.deleteMany({});
-        console.log(`🌱 Seeding ${reactionsToInsert.length} reactions...`);
-        const reactionsResult = await reactionsCollection.insertMany(reactionsToInsert);
-        console.log(`✅ Success! Inserted ${reactionsResult.insertedCount} reactions.`);
+        console.log(`🌱 Inserting new data...`);
+        // Insert new data
+        const elementsResult = await db.collection("elements").insertMany(elementsToInsert);
+        const reactionsResult = await db.collection("reactions").insertMany(reactionsToInsert);
+
+        console.log(`✅ Success! Inserted ${elementsResult.insertedCount} elements & ${reactionsResult.insertedCount} reactions.`);
 
     } catch (error) {
         console.error("\n❌ Failed to seed the databases:", error);

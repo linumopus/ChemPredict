@@ -132,14 +132,15 @@ p {
 .pt-grid {
     flex: 2;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(18, minmax(25px, 1fr));
+    gap: 4px;
+    width: 100%;
 }
 
 .element-box {
     background-color: var(--element-bg);
     border: 2px solid transparent;
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 12px 10px;
     cursor: pointer;
     text-align: center;
@@ -148,7 +149,8 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 80px;
+    min-height: 50px;
+    color: #1e293b;
 }
 
 .element-box:hover, .element-box.selected {
@@ -168,7 +170,7 @@ p {
 }
 
 .element-symbol {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 

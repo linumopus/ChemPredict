@@ -32,8 +32,8 @@ async function getDb() {
     try {
         await client.connect();
         
-        // Define your default database name here if you wish (e.g. client.db('chem_project'))
-        const db = client.db('chem_project');
+        // Connect strictly to the ChemPredict database logic
+        const db = client.db('ChemPredict');
 
         // Cache the newly established client and DB instance
         cachedClient = client;

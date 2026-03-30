@@ -55,9 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const elBox = document.createElement('div');
                 elBox.classList.add('element-box');
+                
+                // Mathematical Grid Placement Logic relative to a canonical 18-column periodic table
+                const z = parseInt(eNum);
+                let r = 1, c = 1;
+                if (z === 1) { r = 1; c = 1; }
+                else if (z === 2) { r = 1; c = 18; }
+                else if (z >= 3 && z <= 4) { r = 2; c = z - 2; }
+                else if (z >= 5 && z <= 10) { r = 2; c = z + 8; }
+                else if (z >= 11 && z <= 12) { r = 3; c = z - 10; }
+                else if (z >= 13 && z <= 18) { r = 3; c = z; }
+                else if (z >= 19 && z <= 36) { r = 4; c = z - 18; }
+                
+                elBox.style.gridRow = r;
+                elBox.style.gridColumn = c;
+
+                // Color mappings mapping roughly to the stylistic groups from the provided photo
+                if ([1,3,11,19].includes(z)) elBox.style.backgroundColor = '#fca5a5'; // Alkali (Orange/Red)
+                else if ([4,12,20].includes(z)) elBox.style.backgroundColor = '#fdba74'; // Alkaline Earth (Orange)
+                else if (z >= 21 && z <= 30) elBox.style.backgroundColor = '#fbcfe8'; // Transition Metals (Pink)
+                else if ([5,6,7,8,13,14,15,16,31,32,33,34].includes(z)) elBox.style.backgroundColor = '#bbf7d0'; // Non-metals / basic metals (Light green)
+                else if ([9,17,35].includes(z)) elBox.style.backgroundColor = '#a7f3d0'; // Halogens (Medium Green)
+                else if ([2,10,18,36].includes(z)) elBox.style.backgroundColor = '#6ee7b7'; // Noble Gases (Darker Green)
+
                 elBox.innerHTML = `
                     <div class="element-number">${eNum}</div>
-                    <div class="element-symbol">${element.symbol}</div>
+                    <div class="element-symbol" style="${[9,17,35].includes(z) ? 'color: #dc2626;' : ''}">${element.symbol}</div>
                 `;
                 
                 elBox.addEventListener('click', () => {
