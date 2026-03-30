@@ -58,6 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('shake-it');
         introBox.classList.add('anim-burst');
 
+        // Start the slow rainbow gradient shimmer after the intro impact
+        await delay(500);
+        mainTitle.classList.add('has-gradient');
+
         // 8. Cleanup
         await delay(600);
         introOverlay.style.opacity = '0';

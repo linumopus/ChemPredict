@@ -76,17 +76,26 @@ h1::after {
     white-space: nowrap;
 }
 
-@keyframes outlineColorShift {
-    0%   { -webkit-text-stroke-color: #3b82f6; }
-    25%  { -webkit-text-stroke-color: #6366f1; }
-    50%  { -webkit-text-stroke-color: #7c3aed; }
-    75%  { -webkit-text-stroke-color: #6366f1; }
-    100% { -webkit-text-stroke-color: #3b82f6; }
+@keyframes logoShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
-@keyframes shimmerSpark {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+h1.has-gradient {
+    /* Violet -> Purple -> Blue -> Violet repeating */
+    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: logoShimmer 7s linear infinite;
+}
+
+@keyframes outlineColorShift {
+    0%   { -webkit-text-stroke-color: #3b82f6; }
+    33%  { -webkit-text-stroke-color: #6366f1; }
+    66%  { -webkit-text-stroke-color: #8b5cf6; }
+    100% { -webkit-text-stroke-color: #3b82f6; }
 }
 
 nav {
@@ -161,7 +170,7 @@ h2 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 7s linear infinite;
+    animation: logoShimmer 9s linear infinite;
     letter-spacing: 0.5px;
 }
 
@@ -213,9 +222,11 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1 / 1.15; /* Soft rectangle matching poster blocks */
-    color: #f1f5f9; /* White text explicitly required over dark block backgrounds */
-    overflow: hidden; /* Keep words from blowing up borders */
+    aspect-ratio: 1 / 1.15;
+    position: relative; /* Fixed: allows absolute positioning for child elements like numbers */
+    color: #f1f5f9;
+    overflow: hidden;
+    padding: 4px;
 }
 
 .element-box:hover, .element-box.selected {
@@ -227,11 +238,13 @@ p {
 }
 
 .element-number {
-    font-size: clamp(0.5rem, 0.8vw, 0.8rem);
-    font-weight: 600;
-    align-self: flex-start;
-    margin-bottom: 2px;
-    opacity: 0.8;
+    position: absolute; /* Fixed: sits cleanly in the corner without affecting center symbol */
+    top: 5px;
+    left: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    opacity: 1;
+    line-height: 1;
 }
 
 .element-symbol {
