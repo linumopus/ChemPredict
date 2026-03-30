@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // UI Loading State configuration
             const originalBtnText = rpBtn.textContent;
-            rpBtn.innerHTML = '<span class="rp-spark-pulse" style="display: inline-block; animation: glowPulse 1s infinite alternate; margin-right: 5px;">✨</span> Predicting...';
+            rpBtn.innerHTML = 'Predicting...';
             rpBtn.classList.add('rp-spark-pulse');
             rpBtn.disabled = true;
             rpBtn.style.opacity = '0.9';
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         // Typewriter Orchestration Logic
                         const heading = document.getElementById('typing-header');
-                        const textToType = "Reaction Found! ✨";
+                        const textToType = "Reaction Found!";
                         let charIndex = 0;
                         const typingInterval = setInterval(() => {
                             if (charIndex < textToType.length) {

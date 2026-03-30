@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     display: flex;
@@ -36,17 +36,17 @@ header {
 }
 
 h1 {
-    font-weight: 700;
-    color: var(--primary-color);
+    font-family: 'Fredoka One', cursive;
+    font-weight: 400; /* Fredoka One is display-weight by default */
     margin-bottom: 1.5rem;
-    font-size: 2.2rem;
-    letter-spacing: -0.5px;
-    background: linear-gradient(270deg, var(--primary-color), #818cf8, #a78bfa, var(--primary-color));
-    background-size: 300% auto;
-    background-clip: text; /* standard */
+    font-size: 3.4rem;
+    letter-spacing: 1px;
+    background: linear-gradient(270deg, #3b82f6, #818cf8, #c084fc, #f472b6, #818cf8, #3b82f6);
+    background-size: 400% auto;
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 4s linear infinite;
+    animation: shimmerSpark 3s linear infinite;
 }
 
 @keyframes shimmerSpark {
@@ -68,11 +68,12 @@ nav {
     color: var(--primary-color);
     padding: 0.6rem 2rem;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 .tab-btn:hover {
@@ -115,15 +116,17 @@ main {
 }
 
 h2 {
-    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
     margin-bottom: 1.2rem;
-    font-size: 1.6rem;
-    background: linear-gradient(270deg, #f1f5f9, #94a3b8, #cbd5e1, #f1f5f9);
+    font-size: 1.9rem;
+    background: linear-gradient(270deg, #ffffff, #93c5fd, #6ee7b7, #ffffff);
     background-size: 300% auto;
-    background-clip: text; /* standard */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerSpark 5s linear infinite;
+    animation: shimmerSpark 4s linear infinite;
+    letter-spacing: 0.5px;
 }
 
 p {
@@ -294,8 +297,9 @@ p {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
 }
 
