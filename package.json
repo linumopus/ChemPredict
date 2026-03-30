@@ -4,6 +4,7 @@
   "description": "Interactive Periodic Table and Reaction Predictor",
   "main": "api/elements.js",
   "scripts": {
+    "dev": "npx vercel dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
