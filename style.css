@@ -78,7 +78,7 @@ h1::after {
     z-index: 1; /* On top of h1 text */
     
     /* Pure gradient fill with NO stroke */
-    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
+    background: linear-gradient(90deg, #3b82f6, #a78bfa, #8b5cf6, #a78bfa, #3b82f6);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
