@@ -96,10 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     detailMass.textContent = eMass;
                     detailUses.textContent = element.uses || 'Not specified';
 
-                    // Animate info panel sliding securely
+                    // Animate info panel
                     ptDetailsPanel.classList.remove('visible');
                     void ptDetailsPanel.offsetWidth;
                     ptDetailsPanel.classList.add('visible');
+
+                    // Smooth scroll to the details panel
+                    setTimeout(() => {
+                        ptDetailsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 50);
                 });
 
                 ptGrid.appendChild(elBox);
@@ -181,6 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     void rpOutput.offsetWidth; // Force Reflow
                     rpOutput.classList.add('visible');
+
+                    // Smooth scroll to reaction output
+                    setTimeout(() => {
+                        rpOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 250);
                 }, 200);
 
             } catch (error) {
