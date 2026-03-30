@@ -70,17 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 elBox.style.gridRow = r;
                 elBox.style.gridColumn = c;
 
-                // Color mappings mapping roughly to the stylistic groups from the provided photo
-                if ([1,3,11,19].includes(z)) elBox.style.backgroundColor = '#fca5a5'; // Alkali (Orange/Red)
-                else if ([4,12,20].includes(z)) elBox.style.backgroundColor = '#fdba74'; // Alkaline Earth (Orange)
-                else if (z >= 21 && z <= 30) elBox.style.backgroundColor = '#fbcfe8'; // Transition Metals (Pink)
-                else if ([5,6,7,8,13,14,15,16,31,32,33,34].includes(z)) elBox.style.backgroundColor = '#bbf7d0'; // Non-metals / basic metals (Light green)
-                else if ([9,17,35].includes(z)) elBox.style.backgroundColor = '#a7f3d0'; // Halogens (Medium Green)
-                else if ([2,10,18,36].includes(z)) elBox.style.backgroundColor = '#6ee7b7'; // Noble Gases (Darker Green)
+                // Color mappings matching roughly to the stylistic groups from the provided photo
+                if ([1,3,11,19].includes(z)) elBox.style.backgroundColor = '#7f1d1d'; // Alkali (Dark Red)
+                else if ([4,12,20].includes(z)) elBox.style.backgroundColor = '#b45309'; // Alkaline Earth (Dark Orange)
+                else if (z >= 21 && z <= 30) elBox.style.backgroundColor = '#701a75'; // Transition Metals (Deep Purple)
+                else if ([5,6,7,8,13,14,15,16,31,32,33,34].includes(z)) elBox.style.backgroundColor = '#166534'; // Non-metals (Dark Green)
+                else if ([9,17,35].includes(z)) elBox.style.backgroundColor = '#166534'; // Halogens (Dark Green)
+                else if ([2,10,18,36].includes(z)) elBox.style.backgroundColor = '#0f766e'; // Noble Gases (Teal)
 
                 elBox.innerHTML = `
-                    <div class="element-number">${eNum}</div>
-                    <div class="element-symbol" style="${[9,17,35].includes(z) ? 'color: #dc2626;' : ''}">${element.symbol}</div>
+                    <div class="element-number" style="color: #cbd5e1;">${eNum}</div>
+                    <div class="element-symbol" style="color: ${[9,17,35].includes(z) ? '#ef4444' : '#f8fafc'};">${element.symbol}</div>
                 `;
                 
                 elBox.addEventListener('click', () => {

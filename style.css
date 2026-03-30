@@ -1,14 +1,14 @@
 /* Core Styling & Variables */
 :root {
-    --primary-color: #6366f1; /* Soft Indigo */
-    --primary-hover: #4f46e5;
-    --background-color: #f8fafc; /* Very light slate */
-    --text-color: #334155;
-    --card-bg: #ffffff;
-    --border-radius: 16px;
-    --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-    --element-bg: #f1f5f9;
-    --element-border: #e2e8f0;
+    --primary-color: #3b82f6; /* Bright vibrant Blue */
+    --primary-hover: #1d4ed8;
+    --background-color: #1a1a24; /* Deep slate background */
+    --text-color: #cbd5e1;
+    --card-bg: #1e1e2b; /* Slightly lighter content card */
+    --border-radius: 12px;
+    --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    --element-bg: #2d2d3d;
+    --element-border: #333344;
 }
 
 * {
@@ -106,12 +106,12 @@ main {
 h2 {
     font-weight: 600;
     margin-bottom: 1.2rem;
-    color: #0f172a;
+    color: #f1f5f9; /* Dark mode bright text */
     font-size: 1.6rem;
 }
 
 p {
-    color: #475569;
+    color: #94a3b8; /* Dark mode subtle text */
 }
 
 /* Periodic Table Section */
@@ -131,6 +131,9 @@ p {
 
 .pt-grid {
     width: 100%;
+    min-width: 700px; /* Prevents unreadable squashing on mobile screens */
+    overflow-x: auto; /* Enables smooth horizontal swipe on phones */
+    padding-bottom: 8px; /* Room for scrollbar */
     display: grid;
     grid-template-columns: repeat(18, minmax(0, 1fr)); /* STRICTLY forces grid into bounds */
     gap: 6px;
@@ -149,7 +152,7 @@ p {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1.15; /* Soft rectangle matching poster blocks */
-    color: #1e293b;
+    color: #f1f5f9; /* White text explicitly required over dark block backgrounds */
     overflow: hidden; /* Keep words from blowing up borders */
 }
 
@@ -206,7 +209,7 @@ p {
 }
 
 .pt-details strong {
-    color: #1e293b;
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -250,13 +253,14 @@ p {
     outline: none;
     font-family: inherit;
     transition: all 0.3s ease;
-    background-color: var(--background-color);
+    background-color: var(--element-bg);
+    color: var(--text-color); /* Light text input */
 }
 
 #rp-input:focus {
     border-color: var(--primary-color);
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); /* Primary blue glow */
 }
 
 .rp-btn {
@@ -314,14 +318,19 @@ p {
     font-size: 1.05rem;
 }
 
+.rp-output p strong {
+    color: var(--primary-color); /* Matches the screenshot blue labels */
+    font-weight: 600;
+}
+
 .rp-output .equation {
     font-family: monospace;
     font-size: 1.3rem;
-    background-color: #e2e8f0;
-    padding: 0.6rem 1.2rem;
+    background-color: var(--card-bg); /* Dark equation box */
+    padding: 0.8rem 1.2rem;
     border-radius: 8px;
     display: inline-block;
-    color: #1e293b;
+    color: #f1f5f9; /* Bright equation text */
     font-weight: 600;
     margin-top: 0.5rem;
     letter-spacing: 1px;
@@ -329,5 +338,34 @@ p {
 
 .rp-output.error h3 {
     color: #ef4444;
-    border-bottom-color: #fca5a5;
+    border-bottom-color: #7f1d1d; /* Dark theme error line */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem; /* Reduce heavy padding on mobile */
+        border-radius: 8px;
+    }
+    
+    header {
+        padding: 2rem 1rem 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tab-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .element-number {
+        font-size: 0.65rem; /* ensure numbers stay readable when grid is 700px */
+    }
+    
+    .element-symbol {
+        font-size: 1.1rem;
+    }
 }
