@@ -36,12 +36,12 @@ header {
 }
 
 h1 {
-    font-family: 'Fredoka One', cursive;
-    font-weight: 400; /* Fredoka One is display-weight by default */
+    font-family: 'Lilita One', cursive;
+    font-weight: 400; /* Lilita One is display-weight by default - very wide and heavy */
     margin-bottom: 1.5rem;
-    font-size: 3.4rem;
-    letter-spacing: 1px;
-    background: linear-gradient(270deg, #3b82f6, #818cf8, #c084fc, #f472b6, #818cf8, #3b82f6);
+    font-size: 3.8rem;
+    letter-spacing: 2px;
+    background: linear-gradient(270deg, #3b82f6, #6366f1, #818cf8, #a5b4fc, #818cf8, #6366f1, #3b82f6);
     background-size: 400% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -116,11 +116,12 @@ main {
 }
 
 h2 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
     margin-bottom: 1.2rem;
-    font-size: 1.9rem;
-    background: linear-gradient(270deg, #ffffff, #93c5fd, #6ee7b7, #ffffff);
+    font-size: 2rem;
+    background: linear-gradient(270deg, #f8fafc, #93c5fd, #c7d2fe, #bfdbfe, #f8fafc);
     background-size: 300% auto;
     background-clip: text;
     -webkit-background-clip: text;
