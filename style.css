@@ -43,18 +43,16 @@ h1 {
     font-size: 3.8rem;
     letter-spacing: 2px;
     display: inline-block;
-    z-index: 1;
+    z-index: 1; /* establishes stacking context */
+    
+    /* Middle Layer: Dark gap stroke */
+    -webkit-text-stroke: 8px #1a1a24;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    animation: logoShimmer 15s linear infinite; /* Much slower gradient transition */
     user-select: none;
 }
 
-/* Layer 1 (bottom): Outer blue animated cartoon outline */
+/* Layer 1 (bottom): Outer blue static cartoon outline */
 h1::before {
     content: attr(data-text);
     position: absolute;
@@ -62,16 +60,14 @@ h1::before {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;
+    z-index: -1; /* Behind h1 text */
+    -webkit-text-stroke: 18px #3b82f6;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 18px #3b82f6;
-    paint-order: stroke fill;
-    z-index: -2;
     white-space: nowrap;
-    /* Static blue stroke matching the user's reference image */
 }
 
-/* Layer 2 (middle): Dark gap stroke to create the 'sticker' effect */
+/* Layer 3 (top): The beautiful gradient fill */
 h1::after {
     content: attr(data-text);
     position: absolute;
@@ -79,11 +75,17 @@ h1::after {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;
+    z-index: 1; /* On top of h1 text */
+    
+    /* Pure gradient fill with NO stroke */
+    background: linear-gradient(90deg, #a78bfa, #8b5cf6, #3b82f6, #8b5cf6, #a78bfa);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 8px #1a1a24;
-    paint-order: stroke fill;
-    z-index: -1;
+    animation: logoShimmer 15s linear infinite;
+    -webkit-text-stroke: 0px transparent;
     white-space: nowrap;
 }
 
